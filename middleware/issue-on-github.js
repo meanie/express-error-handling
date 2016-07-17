@@ -4,6 +4,7 @@
  * Dependencies
  */
 let github = require('meanie-express-github-service');
+let errors = require('../index');
 
 /**
  * Module export
@@ -72,6 +73,6 @@ module.exports = function(error, req, res, next) {
   //Authenticate and create issue
   github.authenticate(GITHUB_TOKEN);
   github.issues.create(data)
-    .catch(error => console.log(error))
+    .catch(error => errors.handler(error, req))
     .finally(() => next(error));
 };
