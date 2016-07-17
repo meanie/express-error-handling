@@ -3,37 +3,37 @@
 /**
  * Base types
  */
-let Base = require('./base');
-let Client = require('./client');
-let Internal = require('./internal');
-let Reported = require('./reported');
-let Server = require('./server');
+let BaseError = require('./base');
+let ClientError = require('./client');
+let InternalError = require('./internal');
+let ReportedError = require('./reported');
+let ServerError = require('./server');
 
 /**
  * Auth types
  */
-let NotAuthenticated = require('./auth/not-authenticated');
-let NotAuthorized = require('./auth/not-authorized');
-let UserPending = require('./auth/user-pending');
-let UserSuspended = require('./auth/user-suspended');
+let NotAuthenticatedError = require('./auth/not-authenticated');
+let NotAuthorizedError = require('./auth/not-authorized');
+let UserPendingError = require('./auth/user-pending');
+let UserSuspendedError = require('./auth/user-suspended');
 
 /**
  * Client types
  */
-let BadRequest = require('./client/bad-request');
-let Exists = require('./client/exists');
-let ExpiredToken = require('./client/expired-token');
-let FileTooLarge = require('./client/file-too-large');
-let InvalidData = require('./client/invalid-data');
-let InvalidToken = require('./client/invalid-token');
-let NotFound = require('./client/not-found');
-let Validation = require('./client/validation');
+let BadRequestError = require('./client/bad-request');
+let ExistsError = require('./client/exists');
+let ExpiredTokenError = require('./client/expired-token');
+let FileTooLargeError = require('./client/file-too-large');
+let InvalidDataError = require('./client/invalid-data');
+let InvalidTokenError = require('./client/invalid-token');
+let NotFoundError = require('./client/not-found');
+let ValidationError = require('./client/validation');
 
 /**
  * Server types
  */
-let SendMail = require('./server/send-mail');
-let ServiceUnavailable = require('./server/service-unavailable');
+let SendMailError = require('./server/send-mail');
+let ServiceUnavailableError = require('./server/service-unavailable');
 
 /**
  * Export
@@ -43,35 +43,35 @@ module.exports = {
   /**
    * Base types
    */
-  Base,
-  Client,
-  Internal,
-  Reported,
-  Server,
+  BaseError,
+  ClientError,
+  InternalError,
+  ReportedError,
+  ServerError,
 
   /**
    * Auth types
    */
-  NotAuthenticated,
-  NotAuthorized,
-  UserPending,
-  UserSuspended,
+  NotAuthenticatedError,
+  NotAuthorizedError,
+  UserPendingError,
+  UserSuspendedError,
 
   /**
    * Client types
    */
-  BadRequest,
-  Exists,
-  ExpiredToken,
-  FileTooLarge,
-  InvalidData,
-  InvalidToken,
-  NotFound,
-  Validation,
+  BadRequestError,
+  ExistsError,
+  ExpiredTokenError,
+  FileTooLargeError,
+  InvalidDataError,
+  InvalidTokenError,
+  NotFoundError,
+  ValidationError,
 
   /**
    * Server types
    */
-  SendMail,
-  ServiceUnavailable,
+  SendMailError,
+  ServiceUnavailableError,
 };
