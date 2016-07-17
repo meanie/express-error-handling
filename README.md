@@ -19,6 +19,57 @@ npm install meanie-express-error-handling --save
 ```
 
 ## Usage
+
+Register new or override existing error handling middleware:
+
+```js
+let errors = require('meanie-express-error-handling');
+let issueOnGithub = function(error, req, res, next) { };
+errors.register('issue-on-github', issueOnGithub);
+```
+
+Load a specific stack of pre-registered error handling middleware:
+
+```js
+let errors = require('meanie-express-error-handling');
+let stack = errors.middleware(['normalize', 'issue-on-github']);
+```
+
+Run error through configured error handling middleware stack:
+
+```js
+let errors = require('meanie-express-error-handling');
+
+someRoute(req, res, next) {
+  doSomething()
+    .then(() => {
+
+      //End response
+      res.end();
+
+      //Do something else async which won't be part of the request
+      //error handling stack, but catch and process the errors anyway.
+      doSomethingElse()
+        .catch(error => errors.handler(error, req));
+    })
+    .catch(next);
+}
+```
+
+Use some of the pre defined error types:
+
+```js
+let errors = require('meanie-express-error-handling');
+let BadRequestError = errors.BadRequestError;
+
+someRoute(req, res, next) {
+  if (somethingBad()) {
+    return next(new BadRequestError('Bad things'))
+  }
+  next();
+}
+```
+
 See the [Meanie Express Seed](https://github.com/meanie/express-seed) for usage.
 
 ## Issues & feature requests
