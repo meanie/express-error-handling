@@ -34,7 +34,7 @@ module.exports = function(error, req, res, next) {
   parts.push('\n### Context');
   parts.push('Origin: **' + origin + '**');
   parts.push('Server version: **' + serverVersion + '**');
-  parts.push('Client version: **' + clientVersion + '**');
+  parts.push('Client version: **' + (clientVersion || '-') + '**');
   parts.push('Server URL: `' + serverUrl + '`');
   parts.push('Client URL: `' + (clientUrl || '–') + '`');
 
