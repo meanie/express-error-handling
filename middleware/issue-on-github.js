@@ -70,9 +70,14 @@ module.exports = function(error, req, res, next) {
     repo: GITHUB_REPO,
   };
 
-  //Authenticate and create issue
-  github.authenticate(GITHUB_TOKEN);
-  github.issues.create(data)
+  //Authenticate
+  github.authenticate({
+    type: 'oauth',
+    token: GITHUB_TOKEN,
+  });
+
+  //Create issue
+  github.issues.createAsync(data)
     .catch(error => errors.handler(error, req))
     .finally(() => next(error));
 };
