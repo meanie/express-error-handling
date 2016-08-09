@@ -76,8 +76,19 @@ module.exports = function(error, req, res, next) {
     token: GITHUB_TOKEN,
   });
 
-  //Create issue
-  github.issues.createAsync(data)
+  //First see if it exists already
+  github.search.issuesAsync({
+    q: 'state:open type:issue in:title "' + title + '"',
+    user: GITHUB_USER,
+    repo: GITHUB_REPO,
+  })
+    .then(result => {
+
+      //If it doesn't exist, create now
+      if (result.items.length === 0) {
+        return github.issues.createAsync(data);
+      }
+    })
     .catch(error => errors.handler(error, req))
     .finally(() => next(error));
 };
