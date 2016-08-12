@@ -18,7 +18,7 @@ module.exports = function(error, req, res, next) {
 
   //Get context
   let {
-    origin, user, userAgent,
+    origin, user, userAgent, referer,
     serverVersion, serverUrl,
     clientVersion, clientUrl,
   } = error.context;
@@ -36,11 +36,11 @@ module.exports = function(error, req, res, next) {
   parts.push('Server version: **' + serverVersion + '**');
   parts.push('Client version: **' + (clientVersion || '-') + '**');
   parts.push('Server URL: `' + serverUrl + '`');
-  parts.push('Client URL: `' + (clientUrl || '–') + '`');
+  parts.push('Client URL: `' + (clientUrl || referer || '–') + '`');
 
   //User data
-  if (user) {
-    parts.push('User: `' + user.id + '`');
+  if (user && user._id) {
+    parts.push('User: `' + user._id.toString() + '`');
   }
 
   //User agent

@@ -61,6 +61,7 @@ module.exports = function(error, req, res, next) {
     error.context.serverUrl = req.originalUrl;
     error.context.userAgent = req.headers['user-agent'];
     error.context.clientVersion = req.headers['x-version'];
+    error.context.referer = req.headers.referer;
   }
 
   //Set origin if not set yet
