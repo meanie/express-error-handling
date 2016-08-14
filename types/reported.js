@@ -8,11 +8,16 @@ let BaseError = require('./base');
 /**
  * Constructor
  */
-function ReportedError(message, stack, origin) {
+function ReportedError(message, stack, origin, context) {
 
   //Remember stack and origin
   this.stack = stack;
   this.origin = origin || 'client';
+
+  //Set context if given
+  if (context) {
+    this.context = context;
+  }
 
   //Call parent constructor
   BaseError.call(this, message);
