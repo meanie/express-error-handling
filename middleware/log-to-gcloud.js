@@ -3,7 +3,7 @@
 /**
  * Dependencies
  */
-let fs = require('fs');
+const fs = require('fs');
 
 /**
  * Module export

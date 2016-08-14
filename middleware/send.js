@@ -3,8 +3,8 @@
 /**
  * Dependencies
  */
-let types = require('../types');
-let ReportedError = types.ReportedError;
+const types = require('../types');
+const ReportedError = types.ReportedError;
 
 /**
  * Module export

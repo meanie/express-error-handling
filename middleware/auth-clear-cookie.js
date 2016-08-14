@@ -3,8 +3,8 @@
 /**
  * Dependencies
  */
-let types = require('../types');
-let NotAuthenticatedError = types.NotAuthenticatedError;
+const types = require('../types');
+const NotAuthenticatedError = types.NotAuthenticatedError;
 
 /**
  * Module export

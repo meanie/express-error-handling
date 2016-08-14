@@ -3,10 +3,10 @@
 /**
  * Dependencies
  */
-let chalk = require('chalk');
-let types = require('../types');
-let ValidationError = types.ValidationError;
-let ReportedError = types.ReportedError;
+const chalk = require('chalk');
+const types = require('../types');
+const ValidationError = types.ValidationError;
+const ReportedError = types.ReportedError;
 
 /**
  * Module export

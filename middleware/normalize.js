@@ -3,11 +3,11 @@
 /**
  * Dependencies
  */
-let types = require('../types');
-let BaseError = types.BaseError;
-let ServerError = types.ServerError;
-let InternalError = types.InternalError;
-let ValidationError = types.ValidationError;
+const types = require('../types');
+const BaseError = types.BaseError;
+const ServerError = types.ServerError;
+const InternalError = types.InternalError;
+const ValidationError = types.ValidationError;
 let MongooseValidationError;
 
 /**
@@ -49,25 +49,6 @@ module.exports = function(error, req, res, next) {
   Object.defineProperty(error, 'message', {
     enumerable: true,
   });
-
-  //Get locals
-  const APP_VERSION = req.app.locals.APP_VERSION;
-
-  //Add context to error
-  error.context = error.context || {};
-  error.context.serverVersion = APP_VERSION;
-  if (req) {
-    error.context.user = req.me;
-    error.context.serverUrl = req.originalUrl;
-    error.context.userAgent = req.headers['user-agent'];
-    error.context.clientVersion = req.headers['x-version'];
-    error.context.referer = req.headers.referer;
-  }
-
-  //Set origin if not set yet
-  if (!error.context.origin) {
-    error.context.origin = 'server';
-  }
 
   //Call next middleware
   next(error);

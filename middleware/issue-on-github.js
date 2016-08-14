@@ -3,8 +3,8 @@
 /**
  * Dependencies
  */
-let github = require('meanie-express-github-service');
-let errors = require('../index');
+const github = require('meanie-express-github-service');
+const errors = require('../index');
 
 /**
  * Module export
@@ -16,15 +16,17 @@ module.exports = function(error, req, res, next) {
     return next(error);
   }
 
-  //Get context
-  let {
-    origin, user, userAgent, referer,
-    serverVersion, serverUrl,
-    clientVersion, clientUrl,
-  } = error.context;
+  //Get error context
+  const user = req.me;
+  const origin = error.origin || 'server';
+  const version = req.app.locals.APP_VERSION;
+  const environment = req.app.locals.ENV;
+  const serverUrl = req.originalUrl;
+  const clientUrl = req.headers.referer;
+  const userAgent = req.headers['user-agent'];
 
   //Prepare labels and title
-  let labels = ['error', origin];
+  let labels = ['error', origin, environment];
   let title = error.message;
 
   //Initialize body parts
@@ -32,11 +34,11 @@ module.exports = function(error, req, res, next) {
 
   //Context
   parts.push('\n### Context');
+  parts.push('Environment: **' + environment + '**');
   parts.push('Origin: **' + origin + '**');
-  parts.push('Server version: **' + serverVersion + '**');
-  parts.push('Client version: **' + (clientVersion || '-') + '**');
+  parts.push('Version: **' + version + '**');
   parts.push('Server URL: `' + serverUrl + '`');
-  parts.push('Client URL: `' + (clientUrl || referer || '–') + '`');
+  parts.push('Client URL: `' + clientUrl + '`');
 
   //User data
   if (user && user._id) {
