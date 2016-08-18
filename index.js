@@ -70,7 +70,7 @@ let service = {
 //Register middleware
 let path = './middleware/';
 let middleware = [
-  'auth-clear-cookie', 'issue-on-github',
+  'auth-clear-cookie', 'issue-on-github', 'track-with-sentry',
   'log-to-console', 'log-to-gcloud',
   'normalize', 'send',
 ];

@@ -32,7 +32,9 @@ Load a specific stack of pre-registered error handling middleware:
 
 ```js
 let errors = require('meanie-express-error-handling');
-let stack = errors.middleware(['normalize', 'issue-on-github']);
+let stack = errors.middleware([
+  'normalize', 'track-with-sentry', 'issue-on-github'
+]);
 ```
 
 Run error through configured error handling middleware stack:
