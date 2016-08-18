@@ -3,7 +3,7 @@
 /**
  * Dependencies
  */
-const raven = require('meanie-express-raven-service')();
+const raven = require('meanie-express-raven-service');
 
 /**
  * Module export
@@ -32,8 +32,9 @@ module.exports = function(error, req, res, next) {
   }
 
   //Use raven
-  raven.setUserContext(context);
-  raven.captureException(error, {extra});
+  const client = raven();
+  client.setUserContext(context);
+  client.captureException(error, {extra});
 
   //Next middleware
   next(error);
