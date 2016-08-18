@@ -1,7 +1,7 @@
 {
   "name": "meanie-express-error-handling",
   "description": "A collection of error types, handlers and middleware for use with Meanie Express Seed projects",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "homepage": "https://github.com/meanie/express-error-handling",
   "author": {
     "name": "Adam Buczynski",
