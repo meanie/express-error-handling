@@ -3,7 +3,7 @@
 /**
  * Dependencies
  */
-let ClientError = require('../client');
+const ClientError = require('../client');
 
 /**
  * Constructor

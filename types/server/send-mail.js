@@ -3,7 +3,7 @@
 /**
  * Dependencies
  */
-let ServerError = require('../server');
+const ServerError = require('../server');
 
 /**
  * Constructor

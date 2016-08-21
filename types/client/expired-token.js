@@ -3,7 +3,7 @@
 /**
  * Dependencies
  */
-let InvalidTokenError = require('./invalid-token');
+const InvalidTokenError = require('./invalid-token');
 
 /**
  * Constructor

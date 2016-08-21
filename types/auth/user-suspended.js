@@ -3,7 +3,7 @@
 /**
  * Dependencies
  */
-let NotAuthenticatedError = require('./not-authenticated');
+const NotAuthenticatedError = require('./not-authenticated');
 
 /**
  * Constructor

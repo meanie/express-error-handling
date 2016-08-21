@@ -3,7 +3,7 @@
 /**
  * Dependencies
  */
-let BaseError = require('./base');
+const BaseError = require('./base');
 
 /**
  * Constructor
