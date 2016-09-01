@@ -8,8 +8,8 @@ const ServerError = require('../server');
 /**
  * Constructor
  */
-function SendMailError(message) {
-  ServerError.call(this, message);
+function SendMailError(message, data) {
+  ServerError.call(this, message, data);
 }
 
 /**
