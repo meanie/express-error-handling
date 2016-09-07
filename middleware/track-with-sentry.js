@@ -22,8 +22,16 @@ module.exports = function(error, req, res, next) {
   const serverVersion = req.app.locals.APP_VERSION;
   const clientVersion = req.headers['x-version'];
 
+  //Get request info
+  const body = req.body;
+  const query = req.query;
+  const headers = req.headers;
+
   //Prepare extra context
-  const extra = {serverUrl, serverVersion, clientUrl, clientVersion};
+  const extra = {
+    serverUrl, serverVersion, clientUrl, clientVersion,
+    body, query, headers,
+  };
 
   //User context
   let context = null;
