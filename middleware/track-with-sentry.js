@@ -25,12 +25,13 @@ module.exports = function(error, req, res, next) {
   //Get request info
   const body = req.body;
   const query = req.query;
+  const method = req.method.toUpperCase();
   const headers = req.headers;
 
   //Prepare extra context
   const extra = {
     serverUrl, serverVersion, clientUrl, clientVersion,
-    body, query, headers,
+    body, query, method, headers,
   };
 
   //User context
