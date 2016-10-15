@@ -19,6 +19,7 @@ ServiceUnavailableError.prototype = Object.create(ServerError.prototype);
 ServiceUnavailableError.prototype.constructor = ServiceUnavailableError;
 ServiceUnavailableError.prototype.name = 'ServiceUnavailableError';
 ServiceUnavailableError.prototype.code = 'SERVICE_UNAVAILABLE';
+ServiceUnavailableError.prototype.isTrivial = true;
 
 //Export
 module.exports = ServiceUnavailableError;
