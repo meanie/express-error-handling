@@ -15,12 +15,9 @@ module.exports = function(error, req, res, next) {
   //unless we were requesting secure status
   if (error instanceof NotAuthenticatedError && !req.body.secureStatus) {
 
-    //Get secure cookie setting
-    const COOKIE_SECURE = req.app.locals.REFRESH_TOKEN_COOKIE_SECURE;
-
     //Clear cookie
     res.clearCookie('refreshToken', {
-      secure: COOKIE_SECURE,
+      secure: req.secure,
       httpOnly: true,
     });
   }
