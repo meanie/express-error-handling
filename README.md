@@ -4,7 +4,7 @@
 [![node dependencies](https://david-dm.org/meanie/express-error-handling.svg)](https://david-dm.org/meanie/express-error-handling)
 [![github issues](https://img.shields.io/github/issues/meanie/express-error-handling.svg)](https://github.com/meanie/express-error-handling/issues)
 [![codacy](https://img.shields.io/codacy/4864254c6487475690821ffd20c498f0.svg)](https://www.codacy.com/app/meanie/express-error-handling)
-[![Join the chat at https://gitter.im/meanie/meanie](https://img.shields.io/badge/gitter-join%20chat%20%E2%86%92-brightgreen.svg)](https://gitter.im/meanie/meanie?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 
 A collection of error types, handlers and middleware for use with [Meanie Express Seed](https://github.com/meanie/express-seed) projects
 
@@ -89,4 +89,4 @@ Pull requests are welcome! If you would like to contribute to Meanie, please che
 ## License
 (MIT License)
 
-Copyright 2016, [Adam Buczynski](http://adambuczynski.com)
+Copyright 2016-2017, [Adam Reis](http://adam.reis.nz)
