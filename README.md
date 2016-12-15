@@ -18,30 +18,39 @@ You can install this package using `npm`.
 npm install meanie-express-error-handling --save
 ```
 
-## Usage
-
-Register new or override existing error handling middleware:
-
+## Configuration
 ```js
-let errors = require('meanie-express-error-handling');
-let issueOnGithub = function(error, req, res, next) { };
-errors.register('issue-on-github', issueOnGithub);
-```
+//Load library
+const errors = require('meanie-express-error-handling');
 
-Load a specific stack of pre-registered error handling middleware:
+//Define some custom middleware
+const myHandler = function(error, req, res, next) { ... };
 
-```js
-let errors = require('meanie-express-error-handling');
-let stack = errors.middleware([
-  'normalize', 'track-with-sentry', 'issue-on-github'
+//Register it with the error handler
+errors.register('my-handler', myHandler);
+
+//Specify default middleware stack to use
+errors.use([
+  'normalize', 'track-with-sentry', 'my-handler', 'log-to-console',
 ]);
 ```
 
-Run error through configured error handling middleware stack:
+## Usage
+Load stack of pre-registered error handling middleware:
 
 ```js
-let errors = require('meanie-express-error-handling');
+const stack = errors.middleware();
+```
 
+Use it as express middleware:
+
+```js
+stack.forEach(handler => app.use(handler));
+```
+
+Run an error through error handling middleware stack:
+
+```js
 someRoute(req, res, next) {
   doSomething()
     .then(() => {
@@ -61,9 +70,10 @@ someRoute(req, res, next) {
 Use some of the pre defined error types:
 
 ```js
-let errors = require('meanie-express-error-handling');
-let BadRequestError = errors.BadRequestError;
+//Load error
+const BadRequestError = errors.BadRequestError;
 
+//Use in route
 someRoute(req, res, next) {
   if (somethingBad()) {
     return next(new BadRequestError('Bad things'))
