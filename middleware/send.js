@@ -1,3 +1,4 @@
+/* eslint no-unused-vars: off */
 'use strict';
 
 /**
@@ -10,7 +11,11 @@ const ReportedError = types.ReportedError;
  * Module export
  */
 module.exports = function(error, req, res, next) {
-  next = next || null;
+
+  //No response object present? Don't use this middleware
+  if (!res) {
+    return;
+  }
 
   //Headers already sent?
   if (res.headersSent) {
@@ -23,8 +28,8 @@ module.exports = function(error, req, res, next) {
   }
 
   //Initialise data
+  const status = error.status || 500;
   let json;
-  let status = error.status || 500;
 
   //Check if we have a to JSON converter present
   if (typeof error.toJSON === 'function' && (json = error.toJSON())) {
