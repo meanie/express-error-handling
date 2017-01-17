@@ -69,8 +69,13 @@ BaseError.prototype.toJSON = function() {
 
   //Create object
   let error = {
-    code: this.code
+    code: this.code,
   };
+
+  //Append message
+  if (this.message) {
+    error.message = this.message;
+  }
 
   //Append data
   if (this.data) {
