@@ -39,8 +39,7 @@
     "chalk": "^1.1.3"
   },
   "peerDependencies": {
-    "meanie-express-github-service": "^2.0.1",
-    "meanie-express-raven-service": "^1.0.0"
+    "meanie-express-raven-service": "^1.1.0"
   },
   "devDependencies": {
     "eslint": "^2.13.1"
