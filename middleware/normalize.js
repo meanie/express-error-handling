@@ -8,16 +8,16 @@ const BaseError = types.BaseError;
 const ServerError = types.ServerError;
 const InternalError = types.InternalError;
 const ValidationError = types.ValidationError;
-let MongooseValidationError;
 
 /**
  * Try to load mongoose
  */
+let MongooseError;
 try {
-  MongooseValidationError = require('mongoose').Error.ValidationError;
+  MongooseError = require('mongoose').Error.ValidationError;
 }
 catch (e) {
-  MongooseValidationError = null;
+  MongooseError = null;
 }
 
 /**
@@ -36,8 +36,8 @@ module.exports = function(error, req, res, next) {
   }
 
   //Convert mongoose validation errors
-  if (MongooseValidationError && error instanceof MongooseValidationError) {
-    error = new ValidationError(error);
+  if (isMongooseError(error)) {
+    error = ValidationError.fromMongoose(error);
   }
 
   //Still not an instance of BaseError at this stage?
@@ -53,6 +53,13 @@ module.exports = function(error, req, res, next) {
   //Call next middleware
   next(error);
 };
+
+/**
+ * Check if mongoose validation error
+ */
+function isMongooseError(error) {
+  return (MongooseError && error instanceof MongooseError);
+}
 
 /**
  * Check if internal error
