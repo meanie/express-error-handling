@@ -5,7 +5,6 @@
  */
 const chalk = require('chalk');
 const types = require('../types');
-const ValidationError = types.ValidationError;
 const ReportedError = types.ReportedError;
 
 /**
@@ -28,22 +27,6 @@ module.exports = function(error, req, res, next) {
     console.log(chalk.red(
       error.name + (error.message ? (': ' + error.message) : '')
     ));
-  }
-
-  //Log validation errors fields
-  if (error instanceof ValidationError && error.data && error.data.fields) {
-    let fields = error.data.fields;
-    let lines = [];
-    for (let field in fields) {
-      if (fields.hasOwnProperty(field)) {
-        let message = fields[field].message || fields[field].type;
-        lines.push(chalk.red('  - ', field + ':', message));
-      }
-    }
-    if (lines.length) {
-      console.log(chalk.red('\nFields:'));
-      lines.forEach(line => console.log(chalk.red(line)));
-    }
   }
 
   //Call next middleware
