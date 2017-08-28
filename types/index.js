@@ -35,6 +35,7 @@ const SessionExpiredError = require('./client/session-expired');
  */
 const SendMailError = require('./server/send-mail');
 const ServiceUnavailableError = require('./server/service-unavailable');
+const GatewayTimeoutError = require('./server/gateway-timeout');
 
 /**
  * Export
@@ -76,4 +77,5 @@ module.exports = {
    */
   SendMailError,
   ServiceUnavailableError,
+  GatewayTimeoutError,
 };
