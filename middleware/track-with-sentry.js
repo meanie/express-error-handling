@@ -15,12 +15,19 @@ module.exports = function(error, req, res, next) {
     return next(error);
   }
 
-  //Get raven client
-  const client = raven();
+  //Initialize data
   const data = {};
+  let client;
 
-  //Initialize (clear) user context
-  client.setUserContext();
+  //Get raven client and initialize (clear) user context
+  try {
+    client = raven();
+    client.setContext();
+  }
+  catch (e) {
+    console.warn(chalk.yellow('Raven client not initialized:', e));
+    return next(error);
+  }
 
   //Context available?
   if (req) {
@@ -46,7 +53,7 @@ module.exports = function(error, req, res, next) {
 
     //Set user context if user present
     if (user && user._id) {
-      client.setUserContext({id: user._id.toString()});
+      client.setContext({id: user._id.toString()});
     }
   }
 
