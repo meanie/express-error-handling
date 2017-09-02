@@ -78,14 +78,6 @@ const middleware = [
 ];
 middleware.forEach(name => service.register(name, require(path + name)));
 
-//Register error types
-const types = require('./types');
-for (const type in types) {
-  if (types.hasOwnProperty(type)) {
-    service[type] = types[type];
-  }
-}
-
 /**
  * Export
  */

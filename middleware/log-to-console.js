@@ -4,18 +4,11 @@
  * Dependencies
  */
 const chalk = require('chalk');
-const types = require('../types');
-const ReportedError = types.ReportedError;
 
 /**
  * Module export
  */
 module.exports = function(error, req, res, next) {
-
-  //Don't log reported errors
-  if (error instanceof ReportedError) {
-    return next(error);
-  }
 
   //Log stack if present and if not a trivial error
   if (error.stack && !error.isTrivial) {

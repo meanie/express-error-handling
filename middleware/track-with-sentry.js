@@ -3,7 +3,8 @@
 /**
  * Dependencies
  */
-const raven = require('meanie-express-raven-service');
+const chalk = require('chalk');
+const raven = require('@meanie/express-raven');
 
 /**
  * Module export
@@ -47,13 +48,15 @@ module.exports = function(error, req, res, next) {
 
     //Prepare extra context
     data.extra = {
-      serverUrl, serverVersion, clientUrl, clientVersion,
+      serverUrl, serverVersion,
+      clientUrl, clientVersion,
       body, query, method, headers,
     };
 
     //Set user context if user present
     if (user && user._id) {
-      client.setContext({id: user._id.toString()});
+      const id = user._id.toString();
+      client.setContext({id});
     }
   }
 

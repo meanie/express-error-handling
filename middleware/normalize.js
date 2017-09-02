@@ -3,22 +3,8 @@
 /**
  * Dependencies
  */
-const types = require('../types');
-const BaseError = types.BaseError;
-const ServerError = types.ServerError;
-const InternalError = types.InternalError;
-const ValidationError = types.ValidationError;
-
-/**
- * Try to load mongoose
- */
-let MongooseError;
-try {
-  MongooseError = require('mongoose').Error.ValidationError;
-}
-catch (e) {
-  MongooseError = null;
-}
+const errors = require('@meanie/express-errors');
+const {BaseError, ServerError, InternalError, ValidationError} = errors;
 
 /**
  * Module export
@@ -26,17 +12,18 @@ catch (e) {
 module.exports = function(error, req, res, next) {
 
   //If this is not an object yet at this stage, create an error representation
+  //and default to a server error
   if (typeof error !== 'object') {
     error = new ServerError(String(error));
   }
 
   //Wrap internal errors
-  if (isInternalError(error)) {
+  else if (InternalError.isInternalError(error)) {
     error = new InternalError(error);
   }
 
   //Convert mongoose validation errors
-  if (isMongooseError(error)) {
+  else if (ValidationError.isMongooseError(error)) {
     error = ValidationError.fromMongoose(error);
   }
 
@@ -53,35 +40,3 @@ module.exports = function(error, req, res, next) {
   //Call next middleware
   next(error);
 };
-
-/**
- * Check if mongoose validation error
- */
-function isMongooseError(error) {
-  return (MongooseError && error instanceof MongooseError);
-}
-
-/**
- * Check if internal error
- */
-function isInternalError(error) {
-  if (error instanceof EvalError) {
-    return true;
-  }
-  if (error instanceof TypeError) {
-    return true;
-  }
-  if (error instanceof RangeError) {
-    return true;
-  }
-  if (error instanceof ReferenceError) {
-    return true;
-  }
-  if (error instanceof SyntaxError) {
-    return true;
-  }
-  if (error instanceof URIError) {
-    return true;
-  }
-  return false;
-}

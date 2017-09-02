@@ -1,12 +1,12 @@
 {
-  "name": "meanie-express-error-handling",
+  "name": "@meanie/express-error-handling",
   "description": "A collection of error types, handlers and middleware for use with Meanie Express Seed projects",
-  "version": "2.4.1",
+  "version": "3.0.0",
   "homepage": "https://github.com/meanie/express-error-handling",
   "author": {
     "name": "Adam Reis",
     "email": "adam@reis.nz",
-    "url": "http://adam.reis.nz/"
+    "url": "https://adam.reis.nz/"
   },
   "contributors": [],
   "license": "MIT",
@@ -22,26 +22,24 @@
     "express",
     "errors",
     "error",
-    "types",
     "middleware",
     "handling",
     "handlers"
   ],
   "engines": {
-    "node": ">=7.4.0"
+    "node": ">=8"
   },
   "main": "index.js",
   "scripts": {
-    "lint": "eslint . --fix",
     "postversion": "git push && git push --tags && npm publish"
   },
   "dependencies": {
-    "chalk": "^1.1.3"
+    "chalk": "^2.1.0"
+  },
+  "peerDependencies": {
+    "@meanie/express-errors": "^3.1.0"
   },
   "optionalDependencies": {
-    "meanie-express-raven-service": "^2.0.0"
-  },
-  "devDependencies": {
-    "eslint": "^2.13.1"
+    "@meanie/express-raven": "^3.0.0"
   }
 }
