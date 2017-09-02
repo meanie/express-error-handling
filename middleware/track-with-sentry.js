@@ -3,8 +3,7 @@
 /**
  * Dependencies
  */
-const chalk = require('chalk');
-const raven = require('@meanie/express-raven');
+const raven = require('raven');
 
 /**
  * Module export
@@ -18,17 +17,9 @@ module.exports = function(error, req, res, next) {
 
   //Initialize data
   const data = {};
-  let client;
 
-  //Get raven client and initialize (clear) user context
-  try {
-    client = raven();
-    client.setContext();
-  }
-  catch (e) {
-    console.warn(chalk.yellow('Raven client not initialized:', e));
-    return next(error);
-  }
+  //Clear context
+  raven.setContext();
 
   //Context available?
   if (req) {
@@ -56,12 +47,12 @@ module.exports = function(error, req, res, next) {
     //Set user context if user present
     if (user && user._id) {
       const id = user._id.toString();
-      client.setContext({id});
+      raven.setContext({id});
     }
   }
 
   //Capture exception
-  client.captureException(error, data);
+  raven.captureException(error, data);
 
   //Next middleware
   next(error);
