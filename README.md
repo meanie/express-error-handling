@@ -1,4 +1,4 @@
-# meanie-express-error-handling
+# @meanie/express-error-handling
 
 [![npm version](https://img.shields.io/npm/v/@meanie/express-error-handling.svg)](https://www.npmjs.com/package/@meanie/express-error-handling)
 [![node dependencies](https://david-dm.org/meanie/express-error-handling.svg)](https://david-dm.org/meanie/express-error-handling)
