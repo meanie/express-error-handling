@@ -1,7 +1,7 @@
 {
   "name": "@meanie/express-error-handling",
   "description": "Error handlers and middleware for use in Express projects",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "homepage": "https://github.com/meanie/express-error-handling",
   "author": {
     "name": "Adam Reis",
