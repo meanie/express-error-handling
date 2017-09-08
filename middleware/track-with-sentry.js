@@ -16,39 +16,25 @@ module.exports = function(error, req, res, next) {
   }
 
   //Initialize data
-  const data = {};
-
-  //Clear context
-  raven.setContext();
+  const data = {req};
 
   //Context available?
   if (req) {
 
     //Get data
-    const user = req.me;
-    const serverUrl = req.originalUrl;
-    const clientUrl = req.headers.referer;
-    const serverVersion = req.app.locals.APP_VERSION;
-    const clientVersion = req.headers['x-version'];
-
-    //Get request info
-    const body = req.body;
-    const query = req.query;
+    const {app: {locals}, body, query, headers, originalUrl} = req;
     const method = req.method.toUpperCase();
-    const headers = req.headers;
+    const serverUrl = originalUrl;
+    const clientUrl = headers.referer;
+    const serverVersion = locals.APP_VERSION;
+    const clientVersion = headers['x-version'];
 
-    //Prepare extra context
+    //Set extra data and tags
     data.extra = {
       serverUrl, serverVersion,
       clientUrl, clientVersion,
       body, query, method, headers,
     };
-
-    //Set user context if user present
-    if (user && user._id) {
-      const id = user._id.toString();
-      raven.setContext({id});
-    }
   }
 
   //Capture exception
