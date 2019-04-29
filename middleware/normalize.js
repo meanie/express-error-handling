@@ -27,6 +27,11 @@ module.exports = function(error, req, res, next) {
     error = ValidationError.fromMongoose(error);
   }
 
+  //Convert Joi validation errors
+  else if (ValidationError.isJoiError(error)) {
+    error = ValidationError.fromJoi(error);
+  }
+
   //Still not an instance of BaseError at this stage?
   if (!(error instanceof BaseError)) {
     error = new BaseError(error);

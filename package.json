@@ -40,7 +40,7 @@
     "chalk": "^2.1.0"
   },
   "peerDependencies": {
-    "@meanie/express-errors": ">=3.1.0"
+    "@meanie/express-errors": ">=5.0.0"
   },
   "optionalDependencies": {
     "raven": "^2.1.2"
