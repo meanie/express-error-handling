@@ -27,7 +27,8 @@
     "error",
     "middleware",
     "handling",
-    "handlers"
+    "handlers",
+    "sentry"
   ],
   "engines": {
     "node": ">=8"
@@ -43,6 +44,6 @@
     "@meanie/express-errors": ">=5.0.0"
   },
   "optionalDependencies": {
-    "raven": "^2.1.2"
+    "@sentry/node": "^5.5.0"
   }
 }

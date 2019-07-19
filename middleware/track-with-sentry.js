@@ -3,7 +3,7 @@
 /**
  * Dependencies
  */
-const raven = require('raven');
+const Sentry = require('@sentry/node');
 
 /**
  * Module export
@@ -15,30 +15,54 @@ module.exports = function(error, req, res, next) {
     return next(error);
   }
 
-  //Initialize data
-  const data = {req};
+  //Initialize user, tags and extras
+  const user = {};
+  const tags = {};
+  const extras = {};
 
   //Context available?
   if (req) {
 
     //Get data
-    const {app: {locals}, body, query, headers, originalUrl} = req;
+    const {app: {locals}, body, query, headers, originalUrl, me} = req;
     const method = req.method.toUpperCase();
     const serverUrl = originalUrl;
     const clientUrl = headers.referer;
     const serverVersion = locals.APP_VERSION;
     const clientVersion = headers['x-version'];
+    const userAgent = headers['user-agent'];
 
-    //Set extra data and tags
-    data.extra = {
+    //Ignore Postman requests
+    if (userAgent && userAgent.match(/PostmanRuntime/)) {
+      return next(error);
+    }
+
+    //Set extra
+    Object.assign(extras, {
       serverUrl, serverVersion,
       clientUrl, clientVersion,
       body, query, method, headers,
-    };
+    });
+
+    //Set user data
+    if (me) {
+      const {name, email} = me;
+      const id = me._id.toString();
+      Object.assign(user, {id, name, email});
+    }
   }
 
   //Capture exception
-  raven.captureException(error, data);
+  Sentry.withScope(scope => {
+
+    //Set user, extras and tags
+    scope.setUser(user);
+    scope.setExtras(extras);
+    scope.setTags(tags);
+
+    //Capture exception
+    Sentry.captureException(error);
+  });
 
   //Next middleware
   next(error);
