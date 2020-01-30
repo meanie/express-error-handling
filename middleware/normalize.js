@@ -3,8 +3,8 @@
 /**
  * Dependencies
  */
-const errors = require('@meanie/express-errors');
-const {BaseError, ServerError, InternalError, ValidationError} = errors;
+const {BaseError, ServerError, InternalError, ValidationError, BadRequestError} = require('@meanie/express-errors');
+const jsonError = new RegExp(/^unexpected token.*in JSON/gi);
 
 /**
  * Module export
@@ -15,6 +15,11 @@ module.exports = function(error, req, res, next) {
   //and default to a server error
   if (typeof error !== 'object') {
     error = new ServerError(String(error));
+  }
+
+  //Handle syntax errors coming from JSON body parser
+  else if (error instanceof SyntaxError && error.message.match(jsonError)) {
+    error = new BadRequestError(error);
   }
 
   //Wrap internal errors
