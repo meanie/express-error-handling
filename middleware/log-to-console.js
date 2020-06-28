@@ -10,9 +10,9 @@ const chalk = require('chalk');
  */
 module.exports = function logToConsole(error, req, res, next) {
 
-  //Log stack if present and if not a trivial error
+  //Log full error if not a trivial error
   if (error.stack && !error.isTrivial) {
-    console.log(chalk.red(error.stack));
+    console.error(error.stack);
   }
 
   //Log only error name and message otherwise
