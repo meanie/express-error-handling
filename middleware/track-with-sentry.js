@@ -8,7 +8,7 @@ const Sentry = require('@sentry/node');
 /**
  * Module export
  */
-module.exports = function(error, req, res, next) {
+module.exports = function trackWithSentry(error, req, res, next) {
 
   //Skip trivial errors
   if (error.isTrivial) {

@@ -4,7 +4,7 @@
 /**
  * Module export
  */
-module.exports = function(error, req, res, next) {
+module.exports = function send(error, req, res, next) {
 
   //No response object present or headers already sent?
   if (!res || res.headersSent) {

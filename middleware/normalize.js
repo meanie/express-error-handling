@@ -9,7 +9,7 @@ const jsonError = new RegExp(/^unexpected token.*in JSON/gi);
 /**
  * Module export
  */
-module.exports = function(error, req, res, next) {
+module.exports = function normalize(error, req, res, next) {
 
   //If this is not an object yet at this stage, create an error representation
   //and default to a server error
