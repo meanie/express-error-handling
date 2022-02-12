@@ -7,7 +7,8 @@
 
 Error handlers and middleware for use in Express or [Meanie Express Seed](https://github.com/meanie/express-seed) projects
 
-![Meanie](https://raw.githubusercontent.com/meanie/meanie/master/meanie-logo-full.png)
+## 🚨 DEPRECATED 🚨 
+This package is deprecated and no longer maintained. It is recommended to generate your own custom error handling middleware stack going forward. You are welcome to copy the error handlers from this package and embed them into your own projects.
 
 ## Installation
 
@@ -88,4 +89,4 @@ This package has been kindly sponsored by [Hello Club](https://helloclub.com?sou
 
 (MIT License)
 
-Copyright 2016-2020, Adam Reis
+Copyright 2016-2022, Adam Reis
