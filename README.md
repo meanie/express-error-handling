@@ -1,9 +1,7 @@
 # @meanie/express-error-handling
 
 [![npm version](https://img.shields.io/npm/v/@meanie/express-error-handling.svg)](https://www.npmjs.com/package/@meanie/express-error-handling)
-[![node dependencies](https://david-dm.org/meanie/express-error-handling.svg)](https://david-dm.org/meanie/express-error-handling)
 [![github issues](https://img.shields.io/github/issues/meanie/express-error-handling.svg)](https://github.com/meanie/express-error-handling/issues)
-[![codacy](https://img.shields.io/codacy/4864254c6487475690821ffd20c498f0.svg)](https://www.codacy.com/app/meanie/express-error-handling)
 
 Error handlers and middleware for use in Express or [Meanie Express Seed](https://github.com/meanie/express-seed) projects
 
